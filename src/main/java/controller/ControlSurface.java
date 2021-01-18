@@ -61,6 +61,8 @@ public class ControlSurface {
             drumPadOut.send(new ShortMessage(ShortMessage.NOTE_ON, 15, 12, 127), -1);
         } catch (InvalidMidiDataException e) {
             System.out.println("Couldn't assume control, reason: " + e.getMessage());
+        } catch (NullPointerException npe) {
+            System.out.println("Couldn't establish connection with launchkey, program will fail now");
         }
     }
 
