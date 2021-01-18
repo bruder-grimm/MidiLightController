@@ -52,6 +52,7 @@ public class LightController {
 
     public void setLightColor(Color color) {
         try {
+            server.setBrightness(brightness);
             currentColor = color;
             if (isStrobing) {
                 startStrobe(strobeSpeed, currentColor);
@@ -62,6 +63,19 @@ public class LightController {
                         currentColor.getB()
                 );
             }
+        } catch (YeelightResultErrorException | YeelightSocketException e) {
+            System.out.println("Couldn't communicate with yeelight, reason: " + e.getMessage());
+        }
+    }
+
+    public void flashLightColorMaxBrightness(Color color) {
+        try {
+            server.setRGB(
+                    color.getR(),
+                    color.getG(),
+                    color.getB()
+            );
+            server.setBrightness(100);
         } catch (YeelightResultErrorException | YeelightSocketException e) {
             System.out.println("Couldn't communicate with yeelight, reason: " + e.getMessage());
         }

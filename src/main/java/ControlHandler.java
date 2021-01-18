@@ -74,7 +74,7 @@ public class ControlHandler {
     private void handleDrumpadPress(Tuple<Integer, Integer> pressedPad) {
         updatePhysicalPad(pressedPad, DRUMPAD_PRESS_COLOR, STATIC); // indicate press
         if (pressedPad._1 == 1) { // we're in bottom row
-            lightController.setLightColor(padColorMap.get(pressedPad)); // hold the color as long as the pad is pressed
+            lightController.flashLightColorMaxBrightness(padColorMap.get(pressedPad)); // hold the color as long as the pad is pressed
         }
     }
 
